@@ -1,7 +1,7 @@
 import axios, { spread } from "axios";
 import React, { useEffect, useState } from 'react';
 
-export const Toon = () => {
+export const Crysos = () => {
 
     const [playerData, setPlayerData] = useState({});
     const [playerData2, setPlayerData2] = useState({});
@@ -9,9 +9,9 @@ export const Toon = () => {
      const fetchData = () => {
   
         var APIRankCall =
-        "https://api.henrikdev.xyz/valorant/v1/by-puuid/mmr/eu/ece12227-9613-5dba-9e4e-7e61b0ad0ecc";
+        "https://api.henrikdev.xyz/valorant/v1/by-puuid/mmr/eu/398c58e5-db7a-50cd-a7e8-bd454a44367d";
       var APICallSting =
-        "https://api.henrikdev.xyz/valorant/v1/by-puuid/account/ece12227-9613-5dba-9e4e-7e61b0ad0ecc";
+        "https://api.henrikdev.xyz/valorant/v1/by-puuid/account/398c58e5-db7a-50cd-a7e8-bd454a44367d";
   
   
         const getRank = axios.get(APIRankCall)
@@ -33,9 +33,7 @@ export const Toon = () => {
   
     useEffect (() => {
       fetchData()
-    },[1])
-  
-     
+    },[])
   
   
     return (
@@ -43,7 +41,7 @@ export const Toon = () => {
       <div className="App1">
   <h4 className="h4">Competetive</h4>
           <div className="cardcontent">
-            {JSON.stringify(playerData) != "{}" ? (
+            {JSON.stringify(playerData) !== "{}" ? (
               <>
                 <div className="textcontent">
                   {" "}
@@ -61,10 +59,10 @@ export const Toon = () => {
             ) : (
               <> </>
             )}
-            {JSON.stringify(playerData2) != "{}" ? (
+            {JSON.stringify(playerData2) !== "{}" ? (
               <>
                 <div className="rankimg">
-                  <img src={playerData2.images.small}></img>
+                  <img alt="" src={playerData2.images.small}></img>
                   <p className="h4">{playerData2.currenttierpatched}</p>
                 </div>
               </>
@@ -72,11 +70,11 @@ export const Toon = () => {
               <> </>
             )}
   
-            {JSON.stringify(playerData) != "{}" ? (
+            {JSON.stringify(playerData) !== "{}" ? (
               <>
                 <div>
                   {" "}
-                  <img
+                  <img alt=""
                     className="imgcontent"
                     src={playerData.card.large}
                   ></img>{" "}

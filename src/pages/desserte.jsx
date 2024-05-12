@@ -33,7 +33,7 @@ export const Desserte = () => {
   
     useEffect (() => {
       fetchData()
-    },[1])
+    },[])
       /* This is desserte#sick */
       
   
@@ -45,7 +45,7 @@ export const Desserte = () => {
       <div className="App1">
   <h4 className="h4">Competetive</h4>
           <div className="cardcontent">
-            {JSON.stringify(playerData) != "{}" ? (
+            {JSON.stringify(playerData) !== "{}" ? (
               <>
                 <div className="textcontent">
                   {" "}
@@ -63,10 +63,10 @@ export const Desserte = () => {
             ) : (
               <> </>
             )}
-            {JSON.stringify(playerData2) != "{}" ? (
+            {JSON.stringify(playerData2) !== "{}" ? (
               <>
                 <div className="rankimg">
-                  <img src={playerData2.images.small}></img>
+                  <img alt="" src={playerData2.images.small}></img>
                   <p className="h4">{playerData2.currenttierpatched}</p>
                 </div>
               </>
@@ -74,11 +74,11 @@ export const Desserte = () => {
               <> </>
             )}
   
-            {JSON.stringify(playerData) != "{}" ? (
+            {JSON.stringify(playerData) !== "{}" ? (
               <>
                 <div>
                   {" "}
-                  <img
+                  <img alt=""
                     className="imgcontent"
                     src={playerData.card.large}
                   ></img>{" "}
