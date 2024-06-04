@@ -28,9 +28,9 @@ export const Home = ({ setPlayerData, setMatchesData, setPlayerData2, Region }) 
 
   const fetchData = async (puuid) => {
     try {
-      const APIRankCall = `${baseUrl}/by-puuid/mmr/${region}/${puuid}?api-key=${apiKey}`;
-      const APICallSting = `${baseUrl}/by-puuid/account/${puuid}?api-key=${apiKey}`;
-      const APIMatches = `${baseUrl}/by-puuid/lifetime/matches/${region}/${puuid}?mode=competitive&size=3&api-key=${apiKey}`;
+      const APIRankCall = `${baseUrl}/by-puuid/mmr/${region}/${puuid}?api_key=${apiKey}`;
+      const APICallSting = `${baseUrl}/by-puuid/account/${puuid}?api_key=${apiKey}`;
+      const APIMatches = `${baseUrl}/by-puuid/lifetime/matches/${region}/${puuid}?mode=competitive&size=3&api_key=${apiKey}`;
 
       const [rankResponse, stingResponse, matchesResponse] = await axios.all([
         axios.get(APIRankCall),
