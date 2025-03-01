@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+
 const SearchPlayer = () => {
   const [searchText, setSearchText] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const apiKey = "HDEV-93cf725b-1ded-4682-b479-40e9bad6faec";
-  const baseUrl = "https://api.henrikdev.xyz/valorant/v1";
+  const apiKey = process.env.REACT_APP_VALO_API_KEY;
+  const baseUrl = process.env.REACT_APP_VALO_API;
   const apiEndpoint = process.env.REACT_APP_API_ENDPOINT; // Make sure it's set in .env
 
   const searchForPlayer = async () => {
@@ -24,15 +25,13 @@ const SearchPlayer = () => {
       const playerResponse = await axios.get(`${baseUrl}/account/${splited}?api_key=${apiKey}`);
       const puuid = playerResponse.data.data.puuid;
 
-      console.log("Fetched PUUID:", puuid); // Debugging log
-
       // Check if PUUID already exists
-      const checkResponse = await axios.get(`${apiEndpoint}/check-puuid/${puuid}`);
+      const checkResponse = await axios.get(`${apiEndpoint}/auth/check-puuid/${puuid}`);
       if (checkResponse.data.exists) {
         setMessage("Puuid already exists in the database.");
       } else {
         // Save the puuid to API
-        await axios.post(`${apiEndpoint}/save-puuid`, { puuid });
+        await axios.post(`${apiEndpoint}/auth/save-puuid`, { puuid });
         setMessage("Puuid saved successfully.");
       }
     } catch (error) {
@@ -44,7 +43,8 @@ const SearchPlayer = () => {
 
   return (
     <div className="text-white p-6">
-      <h2 className="text-2xl mb-4">Search for a Player</h2>
+      <h2 className="text-2xl mb-4">ADD YOURSELF TO THE UPCOMING VALORANT ALBANIAN TRACKER</h2>
+      <p>Name#Tag</p>
       <input
         type="text"
         className="border p-2 rounded text-black w-full mb-2"
