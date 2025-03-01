@@ -8,7 +8,7 @@ const SearchPlayer = () => {
 
   const apiKey = "HDEV-93cf725b-1ded-4682-b479-40e9bad6faec";
   const baseUrl = "https://api.henrikdev.xyz/valorant/v1";
-  const apiEndpoint = process.env.REACT_APP_API_ENDPOINT;
+  const apiEndpoint = process.env.REACT_APP_API_ENDPOINT; // Make sure it's set in .env
 
   const searchForPlayer = async () => {
     if (!searchText.includes("#")) {
@@ -24,13 +24,15 @@ const SearchPlayer = () => {
       const playerResponse = await axios.get(`${baseUrl}/account/${splited}?api_key=${apiKey}`);
       const puuid = playerResponse.data.data.puuid;
 
-      // Check if puuid already exists
-      const checkResponse = await axios.get(`${apiEndpoint}/auth/check-puuid/${puuid}`);
+      console.log("Fetched PUUID:", puuid); // Debugging log
+
+      // Check if PUUID already exists
+      const checkResponse = await axios.get(`${apiEndpoint}/check-puuid/${puuid}`);
       if (checkResponse.data.exists) {
         setMessage("Puuid already exists in the database.");
       } else {
         // Save the puuid to API
-        await axios.post(`${apiEndpoint}/auth/save-puuid`, { puuid });
+        await axios.post(`${apiEndpoint}/save-puuid`, { puuid });
         setMessage("Puuid saved successfully.");
       }
     } catch (error) {
@@ -55,7 +57,7 @@ const SearchPlayer = () => {
         onClick={searchForPlayer}
         disabled={loading}
       >
-        {loading ? "adding..." : "add"}
+        {loading ? "Adding..." : "Add"}
       </button>
       {message && <p className="mt-4">{message}</p>}
     </div>
